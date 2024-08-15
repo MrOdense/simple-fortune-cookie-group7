@@ -68,9 +68,5 @@ jobs:
         uses: actions/checkout@v3
       - name: Add kubeconfig
         run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
-      - name: List current dir
-        run: pwd
-      - name: List files in the current directory
-        run: ls -R
-      #- name: Run kubectl command
-      #  run: kubectl --kubeconfig=kubeconfig apply -f frontend/kubernetes/ -f backend/kubernetes/ --namespace=${{ env.ENVIRONMENT }}
+      - name: Run kubectl command
+        run: kubectl --kubeconfig=kubeconfig apply -f ./frontend/kubernetes/ -f ./backend/kubernetes/ --namespace=${{ env.ENVIRONMENT }}
