@@ -66,5 +66,7 @@ jobs:
     steps: 
       - name: Add kubeconfig
         run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
-      - name: Run kubectl command
-        run: echo pwd && kubectl --kubeconfig=kubeconfig apply -f frontend/kubernetes/ -f backend/kubernetes/ --namespace=${{ env.ENVIRONMENT }}
+      - name: List current dir
+        run: pwd
+      #- name: Run kubectl command
+      #  run: kubectl --kubeconfig=kubeconfig apply -f frontend/kubernetes/ -f backend/kubernetes/ --namespace=${{ env.ENVIRONMENT }}
