@@ -61,7 +61,7 @@ jobs:
           tags: ghcr.io/mrodense/frontend_simple_fortune:1.0-${{ github.sha }},ghcr.io/mrodense/backend_simple_fortune:latest
 
   DeployApplication: 
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     needs: [BuildDocker]
     steps: 
       - name: Add kubeconfig
