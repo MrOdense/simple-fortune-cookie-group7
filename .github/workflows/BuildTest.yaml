@@ -47,14 +47,14 @@ jobs:
         with:
           context: frontend
           dockerfile: Dockerfile
-          tags: frontend:latest
+          tags: ghcr.io/mrodense/frontend_simple_fortune:1.0-${{ github.sha }},frontend:latest
 
       - name: Build backend
         uses: docker/build-push-action@v5
         with:
           context: backend
           dockerfile: Dockerfile
-          tags: backend:latest
+          tags: ghcr.io/mrodense/backend_simple_fortune:1.0-${{ github.sha }},backend:latest
       
       - name: Deploy docker compose
         run: docker compose up
