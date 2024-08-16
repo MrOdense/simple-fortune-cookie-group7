@@ -3,6 +3,5 @@ kind: ConfigMap
 metadata:
   name: backend-config
 data:
-  # all data points are handled as strings
   backend_host: "backend"
   backend_port: "9000"

@@ -19,3 +19,14 @@ spec:
         image: ghcr.io/mrodense/backend_simple_fortune:latest
         ports:
         - containerPort: 9000
+        env:
+        - name: BACKEND_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: backend_host
+        - name: BACKEND_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: backend_port

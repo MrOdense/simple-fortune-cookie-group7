@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: backend-service
   labels:
-    app: backend
+    app: backend_simple_fortune
 spec:
   selector:
-    app: backend
+    app: backend_simple_fortune
   ports:
     - protocol: TCP
       port: 9000
