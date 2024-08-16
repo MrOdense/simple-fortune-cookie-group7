@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  BuildAndTest:
+  BuildAndTestGo:
     runs-on: ubuntu-latest
     steps:
       - name: Clone down repository
@@ -30,7 +30,7 @@ jobs:
           go test
   
 
-  CheckDocker: 
+  BuildAndTestDocker: 
     runs-on: ubuntu-latest
     needs: [BuildAndTest]
     steps:

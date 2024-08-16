@@ -4,7 +4,7 @@ on:
     branches:
       - "[0-9]*-**"
 jobs: 
-  BuildAndTest:
+  BuildAndTestGo:
     runs-on: ubuntu-latest
     steps:
       - name: Clone down repository
