@@ -52,7 +52,7 @@ jobs:
           tags: backend:latest
       
       - name: Deploy docker compose
-        run: docker compose up
+        run: docker compose up -d
 
       - name: Test
         run: |
