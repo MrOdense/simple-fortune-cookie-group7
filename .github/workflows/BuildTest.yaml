@@ -37,24 +37,19 @@ jobs:
       - name: Clone down repository
         uses: actions/checkout@v4
       
-      - name: Build frontend docker image
-        run: |
-          cd frontend
-          docker build 
-
       - name: Build frontend
         uses: docker/build-push-action@v5
         with:
           context: frontend
           dockerfile: Dockerfile
-          tags: ghcr.io/mrodense/frontend_simple_fortune:1.0-${{ github.sha }},frontend:latest
+          tags: frontend:latest
 
       - name: Build backend
         uses: docker/build-push-action@v5
         with:
           context: backend
           dockerfile: Dockerfile
-          tags: ghcr.io/mrodense/backend_simple_fortune:1.0-${{ github.sha }},backend:latest
+          tags: backend:latest
       
       - name: Deploy docker compose
         run: docker compose up
