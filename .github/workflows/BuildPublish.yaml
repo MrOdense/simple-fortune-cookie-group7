@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
-    needs: [CheckDocker]
     steps:
       - name: Clone down repository
         uses: actions/checkout@v4  
