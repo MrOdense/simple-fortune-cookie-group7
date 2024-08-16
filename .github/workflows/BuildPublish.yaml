@@ -1,0 +1,44 @@
+name: Build and Test
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  BuildDocker:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    needs: [CheckDocker]
+    steps:
+      - name: Clone down repository
+        uses: actions/checkout@v4  
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: mrodense
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: frontend
+          dockerfile: Dockerfile
+          push: true
+          tags: ghcr.io/mrodense/frontend_simple_fortune:1.0-${{ github.sha }},ghcr.io/mrodense/frontend_simple_fortune:latest
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: backend
+          dockerfile: Dockerfile
+          push: true
+          tags: ghcr.io/mrodense/frontend_simple_fortune:1.0-${{ github.sha }},ghcr.io/mrodense/backend_simple_fortune:latest
+  DeployApplication: 
+    runs-on: ubuntu-latest
+    needs: [BuildDocker]
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Add kubeconfig
+        run: echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
+      - name: Run kubectl command
+        run: kubectl --kubeconfig=kubeconfig apply -f ./frontend/kubernetes/ -f ./backend/kubernetes/ --namespace=${{ env.ENVIRONMENT }}
