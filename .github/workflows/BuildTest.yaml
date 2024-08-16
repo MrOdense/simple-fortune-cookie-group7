@@ -47,7 +47,6 @@ jobs:
         with:
           context: frontend
           dockerfile: Dockerfile
-          push: false
           tags: frontend:latest
 
       - name: Build backend
@@ -55,7 +54,6 @@ jobs:
         with:
           context: backend
           dockerfile: Dockerfile
-          push: false
           tags: backend:latest
       
       - name: Deploy docker compose
