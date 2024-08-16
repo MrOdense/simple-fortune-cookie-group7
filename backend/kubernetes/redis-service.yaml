@@ -3,8 +3,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: redis
-  name: redis
+    app: redis-service
+  name: redis-service
 spec:
   ports:
     - port: 6379
